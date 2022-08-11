@@ -2,8 +2,6 @@ let pattyType = prompt(`Would you like a hamburger or a cheeseburger?`)
     ,orderSum = 0
     ;
 
-
-// null, '', '...'
 if (pattyType === `hamburger`) {
     orderSum +=10;
     } else if (pattyType === `cheeseburger`) {
@@ -49,11 +47,11 @@ if(sauce) {
 
 document.write(`<h2>Your order:</h2>
     <ul>
-    <li>Patty 🍔: ${potatoSize[0].toUpperCase() + potatoSize.slice(1)} </li>`
-)
+    <li>Patty 🍔: ${pattyType[0].toUpperCase() + pattyType.slice(1)}</li>`
+    )
         
 if (potato){
-    document.write(`<li>Potato 🍟: ${pattyType[0].toUpperCase() + pattyType.slice(1)}</li>`)
+    document.write(`<li>Potato 🍟: ${potatoSize[0].toUpperCase() + potatoSize.slice(1)}</li>`)
 }  
 
 if (sauce){

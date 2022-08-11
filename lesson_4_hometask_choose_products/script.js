@@ -6,8 +6,8 @@ if (pattyType === `hamburger`) {
     orderSum +=10;
     } else if (pattyType === `cheeseburger`) {
     orderSum +=15;
-    let doubleCheese = prompt(`Would you like to add double chees?`);
-    if (doubleCheese == '' || doubleCheese == 'yes') {
+    let doubleCheese = confirm(`Would you like to add double cheese?`);
+    if (doubleCheese) {
         orderSum += 5;
     } 
     } else {
@@ -21,9 +21,9 @@ let potato = confirm(`Would you like potato?`)
 
 if (potato) {
     potatoSize = prompt(`Choose potato size: small/middle/big`);
-    if (potatoSize.toLowerCase() === `middle`) {
+    if (potatoSize === `middle`) {
         orderSum += 15;
-    } else if (potatoSize.toLowerCase() === `big`) {
+    } else if (potatoSize === `big`) {
         orderSum += 20;
     } else {
         orderSum += 10;
@@ -37,7 +37,7 @@ let sauce = confirm(`Would you like sauce?`)
 
 if(sauce) {
     sauceType = prompt(`Choose sauce: ketchup/mayonnaise`);
-    if (sauceType.toLowerCase() === `mayonnaise`) {
+    if (sauceType === `mayonnaise`) {
         orderSum += 3
     } else{
         orderSum += 2

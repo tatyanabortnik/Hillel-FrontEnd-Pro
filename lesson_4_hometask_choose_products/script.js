@@ -47,18 +47,18 @@ if(sauce) {
 
 document.write(`<h2>Your order:</h2>
     <ul>
-    <li>Patty 🍔: ${pattyType[0].toUpperCase() + pattyType.slice(1)}</li>`
-    )
+    <li>Patty 🍔: ${pattyType[0].toUpperCase() + pattyType.slice(1)}</li>
+    `);
         
 if (potato){
     document.write(`<li>Potato 🍟: ${potatoSize[0].toUpperCase() + potatoSize.slice(1)}</li>`)
-}  
+}; 
 
 if (sauce){
     document.write(`<li>Sauce 🧂: ${sauceType[0].toUpperCase() + sauceType.slice(1)} </li>
         </ul>`)
-}   
+};  
 
-document.write(`<p>Price: $${orderSum}</p>`)
+document.write(`<p>Price: $${orderSum}</p>`);
 
    

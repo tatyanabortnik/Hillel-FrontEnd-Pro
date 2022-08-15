@@ -3,9 +3,6 @@ let userAnswer = confirm(`Tell me three most important words 💚`)
     ,word
     ,containsDigit
     ,userTransformMethod
-    ,firstWord
-    ,secondWord
-    ,thirdWord
     ,sentence =``
     ;
 

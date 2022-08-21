@@ -34,23 +34,15 @@ for (let i=0; i<arr.length; i++){
 
 console.log(`Array initial: ${arr}`);
 
-// let minArrEl = arr[0]
-//     ,maxArrEl = arr[0];
-
-// for (let i=1; i<arr.length; i++){
-//     minArrEl = arr[i] <= minArrEl ? arr[i] : minArrEl;
-//     maxArrEl = arr[i] >= maxArrEl ? arr[i] : maxArrEl;
-// }
-
-minArrEl = Math.min(...arr);
-maxArrEl = Math.max(...arr);
-
-console.log(`Min array element: ${minArrEl} at index ${arr.lastIndexOf(minArrEl)}`);
-console.log(`Max array element: ${maxArrEl} at index ${arr.lastIndexOf(maxArrEl)}`);
-
-let lastIndexOfMin = arr.lastIndexOf(minArrEl)
+let minArrEl = Math.min(...arr)
+    ,maxArrEl = Math.max(...arr)
+    ,lastIndexOfMin = arr.lastIndexOf(minArrEl)
     ,lastIndexOfMax = arr.lastIndexOf(maxArrEl)
-    ,temp = arr[lastIndexOfMin];
+    ,temp = arr[lastIndexOfMin]
+    ;
+
+console.log(`Min array element: ${minArrEl} at index ${lastIndexOfMin}`);
+console.log(`Max array element: ${maxArrEl} at index ${lastIndexOfMax}`);
 
 arr[lastIndexOfMin] = arr[lastIndexOfMax];
 arr[lastIndexOfMax] = temp;

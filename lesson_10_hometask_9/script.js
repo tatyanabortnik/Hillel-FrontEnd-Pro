@@ -122,9 +122,8 @@ const renderTbody = () => {
                     .map(item => {
                         item.reverse().pop();
                         item[0] = getFlag(item[0]);
-                        return item.join(` — `)
+                        return `<div>${item.join(` — `)}</div>`
                     })
-                    .map(item =>`<div>${item}</div>`)
     
                     return winners.join(``)
                 }

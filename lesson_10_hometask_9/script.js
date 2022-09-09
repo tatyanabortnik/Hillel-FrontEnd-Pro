@@ -99,8 +99,12 @@ const americanCountries = getCountriesByContinent(`America`);
 const africanCountries = getCountriesByContinent(`Africa`);
 const oceaniaCountries = getCountriesByContinent(`Oceania`);
 
-const getWinnersInfoBySport = sport => winners
-    .filter(winner => winner[0] === sport)
+const getWinnersInfoBySport = sport => {
+    let winnersData = JSON.parse(JSON.stringify(winners));
+    winnersData.filter(winner => winner[0] === sport);
+
+    return winnersData
+}
 
 const getFlag = countryAbbr  => (flags.find(item => item[0] === countryAbbr)[1])
 
@@ -116,6 +120,7 @@ const renderTbody = () => {
             let sportIcon = sport[0]; 
             let sportName = sport[1]; 
             let currentWinners = getWinnersInfoBySport(sportName); 
+
             const getWinnersbyCountries = countriesList => {
                 let winners = currentWinners
                     .filter(item => countriesList.includes(item[2]) || '') 
@@ -146,3 +151,4 @@ document.write (`<table>
     ${renderTbody()}
 </table>`)  
 
+console.log(winners)

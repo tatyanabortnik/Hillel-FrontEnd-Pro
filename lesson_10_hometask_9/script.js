@@ -105,17 +105,9 @@ const getWinnersInfoBySport = sport => winners
 const getFlag = countryAbbr  => (flags.find(item => item[0] === countryAbbr)[1])
 
 const renderTbody = () => {
-    let olympic = [
-        ['🔵', `Europe`],
-        ['⚫', 'Africa'],
-        ['🔴', 'America'],
-        ['🟡', 'Asia'],
-        ['🟢', 'Oceania']
-    ];
-
     let olympicCirclesTDs = olympic
             .map(item => {
-            let continentIcon = item[0]; //'🔵'
+            let continentIcon = item;
             return `<td>${continentIcon}</td>`
     })
 

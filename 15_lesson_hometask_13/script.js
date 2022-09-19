@@ -11,10 +11,6 @@ class Burger {
     }
 }
 
-let Hamburger = new Burger("Hamburger", "small");
-
-Hamburger.setAdditionalIngredients(`egg`, `onion`);
-
 class Cheeseburger extends Burger{
     constructor(name, size){
         super(name,size);
@@ -22,6 +18,8 @@ class Cheeseburger extends Burger{
     }
 }
 
-let myCheeseburger = new Cheeseburger( "Cheeseburger", "small");
+let Hamburger = new Burger("Hamburger", "small");
+Hamburger.setAdditionalIngredients(`egg`, `onion`);
 
+let myCheeseburger = new Cheeseburger( "Cheeseburger", "small");
 myCheeseburger.setAdditionalIngredients(`egg`, `onion`);

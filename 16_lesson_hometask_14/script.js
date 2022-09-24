@@ -103,7 +103,6 @@ class User {
     }
 
     render(){
-
         let name = this.name,
             age = this.age,
             role = this.role,
@@ -119,7 +118,7 @@ class User {
                                 <p>Age: <b>${age}</b></p>
                             </div>
                         </div>
-                        <div class="user__info--role ${role}">
+                        <div class="user__info--role student">
                             <img src="images/roles/${role}.png" alt="${role}" height="25">
                             <p>${role}</p>
                         </div>
@@ -159,7 +158,6 @@ class Student extends User {
     constructor(obj){
         super(obj);
     }
-
 }
 
 class Admin extends User {

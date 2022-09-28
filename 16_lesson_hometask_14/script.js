@@ -139,13 +139,13 @@ class User {
     }
 
     renderCourses(){
-        let role = this.role;
-        let pS = [];
+        let role = this.role,
+            pS = [];
 
-        this.courses.forEach(course => {
+        pS = this.courses.map(course => {
             let markGradation = this.getMarkGradation(course);
-
-            pS.push(`<p class="user__courses--course ${role}">${course.title}<span class="${markGradation}">${markGradation}</span></p>`)
+    
+            return `<p class="user__courses--course ${role}">${course.title}<span class="${markGradation}">${markGradation}</span></p>`
         })
 
         return `<div class="user__courses">${pS.join(``)}</div>`
@@ -167,21 +167,22 @@ class Admin extends User {
 
     renderCourses(){    
         let role = this.role,
-            divS = [];
-            
-        this.courses.forEach(course => {
+        divS = [];
+
+        divS = this.courses.map(course => {
             let markGradation = this.getMarkGradation(course);
             let lector = course.lector;
-                
-                divS.push(`<div class="user__courses--course ${role}">
-                            <p>Title: <b>${course.title}</b></p>
-                            <p>Admin's score: <span class="${markGradation}">${markGradation}</span></p>
-                            <p>Lector: <b>${lector}</b></p>
-                        </div>`)
-            })
+
+            return `<div class="user__courses--course ${role}">
+            <p>Title: <b>${course.title}</b></p>
+            <p>Admin's score: <span class="${markGradation}">${markGradation}</span></p>
+            <p>Lector: <b>${lector}</b></p>
+        </div>`
+
+        })
             
         return `<div class="user__courses admin--info">${divS.join(``)}</div>`
-        }
+    }
 }
 
 class Lector extends User {
@@ -203,19 +204,19 @@ class Lector extends User {
     renderCourses(){    
         let role = this.role;
         let divS = [];
-                    
-        this.courses.forEach(course => {
+
+        divS = this.courses.map(course => {
             let markGradation = this.getMarkGradation(course);
             let studentsScore = this.getStudentsScore(course);
+
+            return `<div class="user__courses--course ${role}">
+            <p>Title: <b>${course.title}</b></p>
+            <p>Lector's score: <span class="${markGradation}">${markGradation}</span></p>
+            <p>Average student's score: <span class="${studentsScore}">${studentsScore}</span></p>
+        </div>`
+        })
                     
-            divS.push(`<div class="user__courses--course ${role}">
-                            <p>Title: <b>${course.title}</b></p>
-                            <p>Lector's score: <span class="${markGradation}">${markGradation}</span></p>
-                            <p>Average student's score: <span class="${studentsScore}">${studentsScore}</span></p>
-                        </div>`)
-                            })
-                    
-            return `<div class="user__courses admin--info">${divS.join(``)}</div>`
+        return `<div class="user__courses admin--info">${divS.join(``)}</div>`
     }
 }
 

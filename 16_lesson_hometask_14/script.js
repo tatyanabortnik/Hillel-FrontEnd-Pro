@@ -235,4 +235,3 @@ let usersClassified = users
 document.write( `<div class="users">
             ${ usersClassified.map( item => item.render() ).join(``) }
             </div>`);
- 

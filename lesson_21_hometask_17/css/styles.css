@@ -1,0 +1,43 @@
+body{
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+}
+
+  form{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    width: fit-content;
+    padding: 10px;
+  }
+
+  label{
+    margin-bottom: 10px;
+  }
+
+.element{
+    width: 100px;
+    height: 100px;
+    order: 1;
+    transition: 0.5s;
+    opacity: 0;
+}
+
+.square{
+    opacity: 1;
+}
+
+.rectangle{
+    opacity: 1;
+    width: 200px;
+}
+
+.circle{
+    opacity: 1;
+    border-radius: 50%;
+}

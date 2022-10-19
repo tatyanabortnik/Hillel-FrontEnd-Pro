@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson_20</title>
+  <style>
+    .first{
+      width: 150px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: crimson;
+    }
+
+    .second{
+      width: 115px;
+      height: 115px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: black;
+    }
+
+    .third{
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: orange;
+    }
+
+    input::placeholder{
+      color: #dad6d6
+    }
+
+    input:focus::placeholder{
+      color: transparent;
+    }
+
+    form{
+      display: flex;
+      flex-direction: column;
+      border: 1px solid black;
+      width: fit-content;
+      padding: 10px;
+    }
+
+    label, fieldset{
+      margin-bottom: 10px;
+    }
+
+    textarea{
+      resize: none;
+    }
+
+    .error{
+      border-color: crimson;
+    }
+
+    .block{
+      width: 100px;
+      height: 100px;
+      background-color: crimson;
+    }
+  </style>
+</head>
+<body>
+    
+  <!-- * name surname
+    * email
+    * password
+    * confirm password
+    * 3 checkbox -> Size => 2 checked
+    2 radio -> Color => 1st checked
+    message -->
+
+  <form id="orderTShirt">
+    <label>
+      Name Surname <input type="text" id="orderFullname" pattern=".{3,}" value="Jack Poltava" required>
+    </label>
+
+    <label>
+      Email <input type="email" id="orderEmail" value="jack@gmail.com" required>
+    </label>
+
+    <label>
+      Password <input type="password" id="orderPassword" value="123" required>
+    </label>
+
+    <label>
+      Confirm Password <input type="password" value="123" id="orderConfirmPassword">
+    </label>
+
+    <fieldset>
+      <legend>Size</legend>
+      <label>
+        S <input type="checkbox" value="S" name="size" checked>
+      </label>
+      <label>
+        M <input type="checkbox" value="M" name="size">
+      </label>
+      <label>
+        L <input type="checkbox" value="L" name="size" checked>
+      </label>
+    </fieldset>
+    
+    <fieldset>
+      <legend>Color</legend>
+      <label>
+        yellow <input type="radio" value="yellow" name="color" checked>
+      </label>
+      <label>
+        blue <input type="radio" value="blue" name="color">
+      </label>
+    </fieldset>
+
+    <label>
+      Country 
+      <select id="orderCountry">
+        <option value="Ukraine">Ukraine</option>
+        <option value="Poland">Poland</option>
+        <option value="Germany">Germany</option>
+      </select>
+    </label>
+
+    <label>
+      Message <textarea id="orderMessage">Smth</textarea>
+    </label>
+
+    <button>Order</button>
+  </form>
+  
+  <script src="script.js"></script>
+</body>
+</html>

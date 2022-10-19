@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson_20</title>
+  <style>
+    .first{
+      width: 150px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: crimson;
+    }
+
+    .second{
+      width: 115px;
+      height: 115px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: black;
+    }
+
+    .third{
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: orange;
+    }
+
+    input::placeholder{
+      color: #dad6d6
+    }
+
+    input:focus::placeholder{
+      color: transparent;
+    }
+
+    form{
+      display: flex;
+      flex-direction: column;
+      border: 1px solid black;
+      width: fit-content;
+      padding: 10px;
+    }
+
+    label, fieldset{
+      margin-bottom: 10px;
+    }
+
+    textarea{
+      resize: none;
+    }
+
+    .error{
+      border-color: crimson;
+    }
+
+    .block{
+      width: 100px;
+      height: 100px;
+      background-color: crimson;
+    }
+  </style>
+</head>
+<body>
+
+
+  
+  <label for="username">Username</label>
+  <input type="text" id="username">
+  <input type="email">
+  <input type="password">
+  <input type="tel">
+  <input type="color" id="color">
+
+  <label>
+    XS <input type="radio" value="XS" name="tSHirtSize">
+  </label>
+  <label>
+    S <input type="radio" value="S" name="tSHirtSize">
+  </label>
+  <label>
+    XXL <input type="radio" value="XXL" name="tSHirtSize">
+  </label>
+
+  <label>
+    XS <input type="checkbox" value="XS" name="tSHirtSize" checked>
+  </label>
+  <label>
+    S <input type="checkbox" value="S" name="tSHirtSize">
+  </label>
+  <label>
+    XXL <input type="checkbox" value="XXL" name="tSHirtSize" checked>
+  </label>
+
+  <textarea id="message">
+    Hello, world
+  </textarea>
+
+  <label for="username">Username</label>
+  <input type="text" id="username" placeholder="Username">
+
+  <button id="clickMe">Click me</button>
+
+    <select id="select" multiple>
+      <option value="first">First</option>
+      <option value="second" selected>Second</option>
+      <option value="third" disabled>Third</option>
+      <option value="fourth" selected>Fourth</option>
+    </select>
+    <br><br>
+
+  
+  
+  <script src="script.js"></script>
+</body>
+</html>

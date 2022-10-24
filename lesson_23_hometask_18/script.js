@@ -1,6 +1,4 @@
-let arr = [];
-
-const getFile = filePath => {
+const getFile = (filePath, callBack) => {
     let request = new XMLHttpRequest();
 
     request.open(`GET`, filePath);
@@ -12,12 +10,33 @@ const getFile = filePath => {
         if(request.status === 200){
             console.log(`Retrieved successfully ${filePath}`);
             let response = JSON.parse(request.response);
-
-            arr = arr.concat(response.children);
-            console.log(arr);
+            callBack(response);
         }
     })
 };
+let childrenArr = [];
 
-getFile(`./data.json`);
-getFile(`./data2.json`);
+const getChildren = info => {
+    childrenArr = childrenArr.concat(info.children);
+    getFile(`./data2.json`, getChildren2)
+}
+
+const getChildren2 = info => {
+    childrenArr = childrenArr.concat(info.children);
+    console.log(childrenArr); //show arr result once, here
+}
+
+getFile(`./data.json`, getChildren);
+
+
+//---------------------------------------------------//
+//or show childrenArr every time when childrenArr is concatenated:
+//---------------------------------------------------//
+
+// const getChildren = info => {
+//     childrenArr = childrenArr.concat(info.children);
+//     console.log(childrenArr); 
+// }
+
+// getFile(`./data.json`, getChildren);
+// getFile(`./data2.json`, getChildren); 

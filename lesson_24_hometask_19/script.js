@@ -42,23 +42,7 @@ const toUpCaseTrim = data => data.toUpperCase().trim();
 const availBankCurList = getAvailBankCurList(bankData);
 const availUserCurList = Object.keys(userData);
 
-// console.log(availBankCurList);
-
 const isAvailCur = (userCurChoice, availCurList) => availCurList.some(item => userCurChoice === item)
-
-
-
-//    let obj = Object.keys(bankData)
-//         .find( ([key,value])=>{key==userCurChoice} );
-//         // .map(([key,value])=>value[condition])
-//     console.log(obj);
-
-
-// USD: {
-//     max: 900,
-//     min: 100,
-//     img: '💵'
-// },
 
 getMoney = () => {
     return new Promise((resolve,reject) => {
@@ -71,7 +55,7 @@ getMoney()
         () => {
             let currency;
             do{
-                currency = prompt(`Choose the currency to show your balance: ${Object.keys(userData)}`); // `...`, ``, null
+                currency = prompt(`Choose the currency to show your balance: ${Object.keys(userData)}`);
                 currency && ( currency = toUpCaseTrim(currency) );
                 // console.log(currency);
             } while (!isAvailCur(currency,availUserCurList));

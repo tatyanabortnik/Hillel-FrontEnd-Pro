@@ -64,7 +64,6 @@ getMoney()
     )
     .catch(
         () => {
-            cashBlock :{
                 let withdrawCur;
                 let withdrawSum;
 
@@ -74,8 +73,8 @@ getMoney()
                     // console.log(withdrawCur);
                     // console.log(withdrawSum);
                 
-                    if (withdrawCur == null) break cashBlock //exit if cancel pressed
-                } while (!isAvailCur(withdrawCur,availBankCurList)) // 
+                    if (withdrawCur == null) return //exit if cancel pressed
+                } while (!isAvailCur(withdrawCur,availBankCurList)) 
                     withdrawSum = prompt(`Enter sum you wish to withdraw:`);
                     let maxUserAvailSum = userData[withdrawCur];
                     let maxBankAvailSum = bankData[withdrawCur][`max`];
@@ -92,7 +91,6 @@ getMoney()
                         console.log(`От Ваші гроші ${withdrawSum} ${withdrawCur} ${curImg}`)
                     }
                 } 
-            }
     )
     .finally( () => console.log( `Дякую, гарного дня 😊`) )
     

@@ -1,0 +1,36 @@
+body{
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+td,th{
+    border: 1px solid #000;
+    text-align: center;
+    padding: 5px; border-radius: 5px;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+.main{
+    display: flex;
+    width: fit-content;
+    gap: 20px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid black;
+    /* border-radius: 5px; */
+    padding:10px;
+}
+
+label{
+    margin-bottom: 10px;
+}

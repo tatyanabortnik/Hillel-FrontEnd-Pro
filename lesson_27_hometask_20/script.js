@@ -1,10 +1,12 @@
-const APIheroes = `https://63693f7228cd16bba71904e4.mockapi.io/heroes`;
-const APIuniverses = `https://63693f7228cd16bba71904e4.mockapi.io/universes`
+const API = `https://63693f7228cd16bba71904e4.mockapi.io`;
+
+// /heroes
+// /universes
 
 //service
-const getData = (path) =>  fetch(path).then(data => data.json());
+const getData = (path) => fetch(API+path).then(data => data.json());
 
-const changeItem = (path, obj) => fetch(path, {
+const changeItem = (itemPath, obj) => fetch(API+itemPath, {
     method: `PUT`,
     headers: {
         "Content-type": "application/json"
@@ -13,14 +15,14 @@ const changeItem = (path, obj) => fetch(path, {
 }).then(data => data.json());
 
 
-const deleteItem = path => {
-    fetch(path, {
+const deleteItem = itemPath => {
+    fetch(API+itemPath, {
         method: `DELETE`
     }).then(data => data.json())
 }
 
 const addItem = (path,obj) => {
-    fetch(path, {
+    fetch(API+path, {
         method: `POST`,
         headers: {
             "Content-type": "application/json"
@@ -34,7 +36,7 @@ const mainSection = document.querySelector(`#main`);
 
 //renderHeroes
 const renderHeroes = path => {
-     getData(APIheroes)
+     getData(`/heroes`)
         .then(data => {
             // console.log(data);
             let table = document.createElement(`table`);
@@ -71,14 +73,15 @@ const renderHero = (hero,renderPlace) => {
     // console.dir(checkbox)
 
     checkbox.addEventListener(`click`, async () => {
-       let changedHero = await changeItem(APIheroes + `/${hero.id}`,{favourite: checkbox.checked});
+       let changedHero = await changeItem(API + `/heroes/${hero.id}`,{favourite: checkbox.checked});
        console.log(changedHero); 
     });
 
     let deleteBtn = document.createElement(`button`);
     deleteBtn.innerHTML = `Delete`;
+
     deleteBtn.addEventListener(`click`, async () => {
-        let deletedHero =  await deleteItem(APIheroes + `/${hero.id}`)
+        let deletedHero =  await deleteItem(`/heroes/${hero.id}`);
         console.log(deletedHero);
         tr.remove();
     });
@@ -93,7 +96,7 @@ const renderHero = (hero,renderPlace) => {
 }
 //renderHero
 
-renderHeroes(APIheroes);
+renderHeroes(`/heroes`);
 
 const heroForm = document.querySelector(`#heroForm`);
 const heroName = document.querySelector(`#heroName`);
@@ -104,8 +107,8 @@ const table = document.querySelector(`table`);
 
 //render form selects
 (async () => {
-    let universes = await fetch(APIuniverses).then(data=>data.json()).then(data => data.map(item=>`<option>${item.name}</option>`));
-    heroComics.innerHTML = universes.join(``);
+    let universesOptions = await getData(`/universes`);
+    heroComics.innerHTML = universesOptions.map(item=>`<option>${item.name}</option>`).join(``);
 })();
 //render form selects
 
@@ -120,7 +123,7 @@ heroForm.addEventListener(`submit`, async (e) => {
         "favourite": heroFav.checked
     }
 
-    let data = await getData(APIheroes);
+    let data = await getData(`/heroes`);
     console.log(data);
 
     data.forEach(item => item.name === heroNameTrimmed && (heroExists = true));
@@ -132,7 +135,7 @@ heroForm.addEventListener(`submit`, async (e) => {
     if(heroExists){
         console.log(`👯‍♀️ ${heroNameTrimmed} already exists in the database!`) 
     }else{
-        let addedHero = await addItem(APIheroes, newHero);
+        let addedHero = await addItem(`/heroes`, newHero);
         console.log(addedHero);
         // renderHero(addedHero,table);
     }

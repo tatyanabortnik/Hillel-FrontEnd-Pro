@@ -1,7 +1,6 @@
 const API = `https://63693f7228cd16bba71904e4.mockapi.io`;
 
-// /heroes
-// /universes
+const mainSection = document.querySelector(`#main`);
 
 //service
 const getData = (path) => fetch(API+path).then(data => data.json());
@@ -15,28 +14,22 @@ const changeItem = (itemPath, obj) => fetch(API+itemPath, {
 }).then(data => data.json());
 
 
-const deleteItem = itemPath => {
-    fetch(API+itemPath, {
+const deleteItem = itemPath => fetch(API+itemPath, {
         method: `DELETE`
     }).then(data => data.json())
-}
 
-const addItem = (path,obj) => {
-    fetch(API+path, {
+const addItem = (path,obj) => fetch(API+path, {
         method: `POST`,
         headers: {
             "Content-type": "application/json"
         },
     body: JSON.stringify(obj)
     }).then(data => data.json())
-}
 //service
-
-const mainSection = document.querySelector(`#main`);
 
 //renderHeroes
 const renderHeroes = path => {
-     getData(`/heroes`)
+     getData(path)
         .then(data => {
             // console.log(data);
             let table = document.createElement(`table`);
@@ -73,7 +66,7 @@ const renderHero = (hero,renderPlace) => {
     // console.dir(checkbox)
 
     checkbox.addEventListener(`click`, async () => {
-       let changedHero = await changeItem(API + `/heroes/${hero.id}`,{favourite: checkbox.checked});
+       let changedHero = await changeItem(`/heroes/${hero.id}`,{favourite: checkbox.checked});
        console.log(changedHero); 
     });
 
@@ -115,57 +108,31 @@ const table = document.querySelector(`table`);
 heroForm.addEventListener(`submit`, async (e) => {
     e.preventDefault();
 
-    let heroNameTrimmed = heroName.value.trim()
+    const table = document.querySelector(`table`);
+
+    let name = heroName.value.trim()
     let heroExists = false;
     let newHero = {
-        "name": heroNameTrimmed,
+        "name": name,
         "comics": heroComics.value,
         "favourite": heroFav.checked
     }
 
-    let data = await getData(`/heroes`);
-    console.log(data);
+    let storedData = await getData(`/heroes`);
+    console.log(storedData);
+    storedData.some(item => item.name === name && (heroExists = true));
 
-    data.forEach(item => item.name === heroNameTrimmed && (heroExists = true));
-
-    console.log(heroExists);
-
-    const table = document.querySelector(`table`);
+    //тут можна писати через зен?
+    //getData(`/heroes`).then(data => data.forEach(...). 
+    //після такого коду мій heroExists не змінюється на true...
 
     if(heroExists){
-        console.log(`👯‍♀️ ${heroNameTrimmed} already exists in the database!`) 
+        console.log(`👯‍♀️ ${name} already exists in the database!`);
+        
     }else{
         let addedHero = await addItem(`/heroes`, newHero);
         console.log(addedHero);
-        // renderHero(addedHero,table);
-    }
-
-    // await getData(APIheroes)
-    //     .then(data => { 
-    //         data.forEach(item => item.name === heroName.value && (heroExists = true));
-
-    //     })
-    //         data.forEach(item => 
-    //         item.name === heroName.value && (heroExists = true)) )
-
-    // if(heroExists){
-    //     console.log(`👯‍♀️ ${heroName.value} already exists in the database!`) 
-    // }else{
-    //      await addItem(APIheroes, newHero)
-    // }
-        // renderHero(newHero,table)}
-    // console.log(addedHero);
-
-       
+        renderHero(addedHero,table);
+    }  
 })
-
-// const deleteItem1 = path => {
-//     fetch(APIheroes+path, {
-//         method: `DELETE`
-//     }).then(data => data.json())
-// }
-
-// (async () => {
-//     await deleteItem1(`/6`);
-// })()
 

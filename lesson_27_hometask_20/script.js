@@ -109,7 +109,6 @@ heroForm.addEventListener(`submit`, async (e) => {
     const table = document.querySelector(`table`);
 
     let name = heroName.value.trim()
-    let heroExists = false;
     let newHero = {
         "name": name,
         "comics": heroComics.value,
@@ -117,14 +116,8 @@ heroForm.addEventListener(`submit`, async (e) => {
     }
 
     let storedData = await getData(`/heroes`);
-    console.log(storedData);
-    storedData.some(item => item.name === name && (heroExists = true));
-
-    //на 119 рядку можна писати через зен?
-    //getData(`/heroes`).then(data => data.some(...). 
-    //після такого коду мій heroExists змінюється на true всередині .some(), але після виходу з .some() залишається false у глобальній області...
-
-    //try/catch потрібно всюди писати, де у нас await? яким чином його тут написати?
+    // console.log(storedData);
+    let heroExists = storedData.some(item => item.name === name);
 
     if(heroExists){
         console.log(`👯‍♀️ ${name} already exists in the database!`);

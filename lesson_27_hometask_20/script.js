@@ -28,9 +28,9 @@ const addItem = (path,obj) => fetch(API+path, {
 //service
 
 //renderHeroes
-const renderHeroes = path => {
-     getData(path)
-        .then(data => {
+const renderHeroes = async (path) => {
+     let storedData = await getData(path);
+
             // console.log(data);
             let table = document.createElement(`table`);
             table.innerHTML = `<thead>
@@ -42,10 +42,9 @@ const renderHeroes = path => {
                 </tr>
             </thead>`
 
-            data.forEach(hero => renderHero(hero,table));
+            storedData.forEach(hero => renderHero(hero,table));
 
             mainSection.append(table);
-})
 }
 //renderHeroes
 
@@ -96,7 +95,6 @@ const heroName = document.querySelector(`#heroName`);
 const heroComics = document.querySelector(`#heroComics`);
 const heroFav = document.querySelector(`#heroFav`);
 const heroBtn = document.querySelector(`#heroBtn`);
-const table = document.querySelector(`table`);
 
 //render form selects
 (async () => {
@@ -122,13 +120,14 @@ heroForm.addEventListener(`submit`, async (e) => {
     console.log(storedData);
     storedData.some(item => item.name === name && (heroExists = true));
 
-    //тут можна писати через зен?
-    //getData(`/heroes`).then(data => data.forEach(...). 
-    //після такого коду мій heroExists не змінюється на true...
+    //на 119 рядку можна писати через зен?
+    //getData(`/heroes`).then(data => data.some(...). 
+    //після такого коду мій heroExists змінюється на true всередині .some(), але після виходу з .some() залишається false у глобальній області...
+
+    //try/catch потрібно всюди писати, де у нас await? яким чином його тут написати?
 
     if(heroExists){
         console.log(`👯‍♀️ ${name} already exists in the database!`);
-        
     }else{
         let addedHero = await addItem(`/heroes`, newHero);
         console.log(addedHero);

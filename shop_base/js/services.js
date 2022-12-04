@@ -1,11 +1,5 @@
 export const API = `https://634e9f834af5fdff3a625f84.mockapi.io`;
-// export const loader = document.querySelector(`#loader`);
 
-// export const APIusers = `https://636fe0d34a801721e0fcaeac.mockapi.io/users`;
-
-// export const getInfoUsers = (path) => fetch(path).then((data) => data.json());
-
-//service//
 export const getInfo = (path) => {
    const loader = document.querySelector(`#loader`);
    if (loader) loader.classList.add(`active`);
@@ -38,7 +32,7 @@ export const deleteItem = (itemPath) =>
       .catch((err) => console.log(`error:`, err));
 
 export const addItem = (path, obj) =>
-   fetch(API+path, {
+   fetch(API + path, {
       method: `POST`,
       headers: {
          "Content-type": "application/json",
@@ -47,4 +41,3 @@ export const addItem = (path, obj) =>
    })
       .then((data) => data.json())
       .catch((err) => console.log(`error:`, err));
-//service//

@@ -1,25 +1,32 @@
 import { renderHeader } from "./header.js";
-import {findDatabaseUser,loginUser,showError,registerUser} from './exports.js';
+import {
+   findDatabaseUser,
+   loginUser,
+   showError,
+   registerUser,
+   getLoggedinUser,
+} from "./exports.js";
 
-// export const loader = document.querySelector(`#loader`);
 const loginForm = document.querySelector(`#loginForm`);
 const registrationForm = document.querySelector(`#registrationForm`);
-// const email = document.querySelector(`input[type="email"]`);
-// const password = document.querySelector(`input[type="password"]`);
-// const error = document.querySelectorAll(`.error`);
 
-//renderLoginHtml//
 const renderLoginHtml = () => {
    renderHeader();
+   let loggedinUser = getLoggedinUser();
 
    loginForm.addEventListener(`submit`, async (e) => {
       e.preventDefault();
 
+      if (loggedinUser) {
+         alert(`Log out first`);
+         return;
+      }
+
       const formData = Object.fromEntries(new FormData(e.target).entries());
-      console.log(formData);
+      // console.log(formData);
 
       const databaseUser = await findDatabaseUser(formData.email);
-      console.log(databaseUser);
+      // console.log(databaseUser);
 
       if (databaseUser) {
          databaseUser.password == formData.password
@@ -31,8 +38,13 @@ const renderLoginHtml = () => {
    registrationForm.addEventListener(`submit`, async (e) => {
       e.preventDefault();
 
+      if (loggedinUser) {
+         alert(`Log out first`);
+         return;
+      }
+
       const formData = Object.fromEntries(new FormData(e.target).entries());
-      console.log(formData);
+      // console.log(formData);
 
       let databaseUser = await findDatabaseUser(formData.email);
 
@@ -42,14 +54,14 @@ const renderLoginHtml = () => {
          password: formData.password,
       };
 
-      formData.password !== formData.passwordVerify &&
+      if (databaseUser) {
+         showError(e, `User with email ${formData.email} already exist!`);
+      } else if (formData.password !== formData.passwordVerify) {
          showError(e, `Passwords don't match`);
-
-      databaseUser
-         ? showError(e, `User with email ${formData.email} already exist!`)
-         : registerUser(newUser);
+      } else {
+         registerUser(newUser);
+      }
    });
 };
-//renderLoginHtml//
 
 renderLoginHtml();

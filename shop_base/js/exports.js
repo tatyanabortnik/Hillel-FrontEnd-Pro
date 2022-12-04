@@ -1,25 +1,27 @@
-import {getInfo,changeItem,addItem} from './services.js';
+import { getInfo, changeItem, addItem } from "./services.js";
 
 export const loader = document.querySelector(`#loader`);
 
 //CART
 export const addToCart = async (user, productId) => {
-   let productIsInCart = user.shoppingCart.find(item => item.id == productId.id);
+   let productIsInCart = user.shoppingCart.find(
+      (item) => item.id == productId.id
+   );
 
-   if(!productIsInCart){
-   user.shoppingCart.push({
-      id: productId,
-      count: 1,
-   })
-   } 
-      let changedUser = await changeItem(`/users/${user.id}`, {
-         shoppingCart: user.shoppingCart,
+   if (!productIsInCart) {
+      user.shoppingCart.push({
+         id: productId,
+         count: 1,
       });
-      console.log(changedUser);
-   
-      localStorage.setItem(`loggedInUser`, JSON.stringify(user));
-   
-      getCartItemsQty(user);
+   }
+   let changedUser = await changeItem(`/users/${user.id}`, {
+      shoppingCart: user.shoppingCart,
+   });
+   console.log(changedUser);
+
+   localStorage.setItem(`loggedInUser`, JSON.stringify(user));
+
+   getCartItemsQty(user);
 };
 
 export const removeFromCart = async (user, productId) => {
@@ -38,14 +40,14 @@ export const removeFromCart = async (user, productId) => {
 
 export const getCartItemsQty = async (user) => {
    headerShoppingCartCount.innerHTML = user.shoppingCart
-      .map(item => +item.count)
-      .reduce((prevItem, item) => prevItem + item,0);
+      .map((item) => +item.count)
+      .reduce((prevItem, item) => prevItem + item, 0);
 };
 
 //USER
 export const findDatabaseUser = async (email) => {
    const users = await getInfo(`/users`);
-   console.log(users);
+   // console.log(users);
 
    return users.find((item) => item.email === email);
 };
@@ -89,7 +91,6 @@ export const showError = (event, text) => {
    error.innerHTML = text;
    error.classList.add(`active`);
 };
-
 
 //STORAGE
 export const addToStorage = ({ id, name, email, shoppingCart, orders }) => {

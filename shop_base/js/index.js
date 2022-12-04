@@ -1,20 +1,14 @@
-import {renderHeader} from './header.js';
-import {getLoggedinUser,addToCart,removeFromCart} from './exports.js';
-import {getInfo} from './services.js';
-
-//import {getList} from './services/serviceUsers.js';
-
+import { renderHeader } from "./header.js";
+import { getLoggedinUser, addToCart, removeFromCart } from "./exports.js";
+import { getInfo, deleteItem } from "./services.js";
 
 const categoriesContainer = document.querySelector(`#categoriesContainer`);
-//renderIndexHtml//
 const renderIndexHtml = async () => {
    renderHeader();
-   
+
    const products = await getInfo(`/products`);
    const loggedInUser = getLoggedinUser();
-   console.log(products);
-   
-
+   // console.log(products);
    let categories = [...new Set(products.map((product) => product.category))]; // unique categories
    // console.log(categories);
 
@@ -37,9 +31,7 @@ const renderIndexHtml = async () => {
       categoriesContainer.append(section);
    });
 };
-//renderIndexHtml//
 
-//renderProduct//
 const renderProduct = (product, place, user) => {
    let productDiv = document.createElement(`div`);
    productDiv.className = `product`;
@@ -65,7 +57,7 @@ const renderProduct = (product, place, user) => {
    infoDiv.className = `product__info`;
    infoDiv.innerHTML = `<span class="product__price">${
       product.sale
-         ? product.price - product.salePercent / 100 * product.price
+         ? product.price - (product.salePercent / 100) * product.price
          : product.price
    }</span>`;
 
@@ -99,9 +91,8 @@ const renderProduct = (product, place, user) => {
    infoDiv.append(btn);
    productDiv.append(infoDiv);
    place.append(productDiv);
-
-   // console.dir(btn);
 };
-//renderProduct//
 
-renderIndexHtml()
+renderIndexHtml();
+
+//what if i delete user from base while they are loggedin and present in LocalStorage:)

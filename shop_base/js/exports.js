@@ -56,7 +56,7 @@ export const registerUser = async (user) => {
 
    let addedUser = await addItem(`/users`, user);
    console.log(addedUser);
-   addToStorage(user);
+   addToStorage(addedUser);
    window.location.href = `./index.html`;
 };
 

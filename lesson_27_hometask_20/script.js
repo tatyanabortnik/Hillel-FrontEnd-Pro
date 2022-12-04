@@ -128,3 +128,18 @@ heroForm.addEventListener(`submit`, async (e) => {
     }  
 })
 
+
+// 1) я розумію, що на 118-120 рядку можна писати ще через зен:
+
+// let heroExists = getData(`/heroes`).then(data => data.some(item => item.name === name )).    //true/false
+
+
+// а чому не працює так:
+
+// let heroExists = false;
+//     getData(`/heroes`).then(data => data.forEach(item => item.name === name && (heroExists = true)). 
+// після такого коду мій heroExists змінюється на true всередині .some(), але після виходу з .some() залишається false у глобальній області...
+
+
+
+// 2) try/catch потрібно всюди писати, де ми використовуємо await? як правильно відловлювати помилки в отриманні даних тут?

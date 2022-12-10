@@ -76,7 +76,6 @@ class ListItem extends React.Component {
       return <li className={className}>{item.title}</li>;
    }
 }
-
 const App = <TodoList array={todoList} />;
 
 root.render(App);

@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Marvel&display=swap')
+
+body
+   font-family: 'Marvel', sans-serif
+   display: flex
+   height: 100vh
+   justify-content: center
+   align-items: center
+
+thead tr
+   background-color: #009879
+   color: #ffffff
+   text-align: left
+
+td,th
+   border: 1px solid #009879
+   text-align: center
+   padding: 12px 15px
+
+tr
+   &:nth-of-type(even)
+      background-color: #f3f3f3
+
+table
+   border-collapse: collapse
+   margin: 25px 0
+   min-width: 400px
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15)
+   outline: 1px solid #009879
+
+.checked
+   color: green
+   font-weight: 600
+   text-transform: uppercase
+   letter-spacing: -0.06em

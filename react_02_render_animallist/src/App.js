@@ -1,4 +1,4 @@
-import { Component, Fragment } from "react";
+import { Component } from "react";
 import Table from "./components/Table";
 
 export default class App extends Component {
@@ -16,9 +16,9 @@ export default class App extends Component {
       let {animals} = this.state;
 
       return (
-         <Fragment>
+         <>
             <Table list={animals} />
-         </Fragment>
+         </>
       );
    }
 }

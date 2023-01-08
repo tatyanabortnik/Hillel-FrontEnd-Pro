@@ -18,7 +18,10 @@ export default class Table extends Component {
          this.setState(
             {
                list: this.state.list.map((item, index) => {
-                  if (index === randomIndex) item.checked = true;
+                  if (index === randomIndex){
+                     item.checked = true;
+                     Object.defineProperty(item, "checked", {enumerable: false});
+                  } 
                   return item;
                }),
                indexList: this.state.indexList.filter(
@@ -61,9 +64,9 @@ export default class Table extends Component {
                {list.map((item, index) => (
                   <tr key={index} className={item.checked ? "checked" : null}>
                      {Object.keys(item).map((k, i) => {
-                        return k !== "checked" ? (
-                           <td key={i} title={item[k]}>{item[k]}</td>
-                        ) : null;
+                        // return k !== "checked" ? (
+                           return <td key={i} title={item[k]}>{item[k]}</td>
+                        // ) : null;
                      })}
                   </tr>
                ))}

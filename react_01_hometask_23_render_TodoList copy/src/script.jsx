@@ -73,6 +73,7 @@ class ListItem extends React.Component {
    render() {
       const { item } = this.props;
       let className = item.completed ? "done" : null;
+      
       return <li className={className}>{item.title}</li>;
    }
 }

@@ -3,7 +3,11 @@ import { useState, useEffect } from "react";
 import { THEME_LIGHT, THEME_STORAGE_KEY } from "../constants/theme";
 
 export default function useTheme() {
-   const [theme, setTheme] = useState(localStorage.getItem(THEME_STORAGE_KEY));
+   const key = localStorage.getItem(THEME_STORAGE_KEY) ?? THEME_LIGHT;
+
+   console.log(THEME_LIGHT);
+
+   const [theme, setTheme] = useState(key);
 
    useEffect(() => {
       localStorage.setItem(THEME_STORAGE_KEY, theme);

@@ -12,7 +12,7 @@ export default function ThemeSwitcher({ theme, setTheme }) {
 
    return (
       <label>
-         Choose theme:
+         Dark theme:
          <Checkbox
             icon={<DarkModeIcon />}
             checkedIcon={<DarkModeIcon />}

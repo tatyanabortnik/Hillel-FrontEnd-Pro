@@ -9,7 +9,6 @@ export default function ColorPicker() {
 
    const handleColor = (color) => {
       setColor(color);
-      localStorage.setItem("color", color);
    };
 
    return (

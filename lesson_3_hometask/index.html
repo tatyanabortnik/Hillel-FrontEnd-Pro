@@ -8,6 +8,23 @@
     <script src="script.js"></script>
 </head>
 <body>
-    
+   <style>
+      ul {
+        --color: red;
+      }
+      p {
+        color: var(--color);
+      }
+      a {
+        color: var(--color, orange);
+      }
+    </style>
+    <p>Paragraph</p>
+    <ul>
+      <li>
+        <a href="#">list item with a link</a>
+      </li>
+      <li>list item</li>
+    </ul> 
 </body>
 </html>
